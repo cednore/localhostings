@@ -11,8 +11,8 @@ services:
       - /var/run
     volumes:
       - ./apps/nginx/etc:/etc/nginx
-      - root_nginx_log:/var/log/nginx:rw
-      - root_nginx_cache:/var/cache/nginx:rw
+      - root_nginx_log:/var/log/nginx
+      - root_nginx_cache:/var/cache/nginx
     ports:
       - 80:80
       - 443:443

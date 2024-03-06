@@ -12,7 +12,7 @@ services:
     command:
       ["sh", "-c", "node ./scripts/self-host-predeploy && node ./dist/index.js"]
     volumes:
-      - ./apps/affine/conf:/root/.affine/config
+      - ./config:/root/.affine/config
       - affine_app_storage:/root/.affine/storage
     ports:
       - 3010:3010
