@@ -1,7 +1,7 @@
 # Contributing
 
-Please submit your issues and pull requests directly on [this repo](https://github.com/cednore/localhostings). Please do consider followings when you are opening;
+We welcome your contributions to this project! Please submit your issues and pull requests directly on [this repo](https://github.com/cednore/localhostings). Here are some important points to consider:
 
-1. Please follow [`gitmoji`](https://gitmoji.dev/) standard when you are making commits for PR.
-2. I use this repo to manage the hosting of my local web applications. Please don't submit changes might affect my infrastructure.
-3. All the secrets (e.g environment variables for each docker containers) are living outside of this repo, since this repo was meant to be public. If you found any sensitive data leak, please send an email to **<cednore@gmail.com>** or submit an [issue](https://github.com/cednore/localhostings/issues) and attach [`security`](https://github.com/cednore/localhostings/labels) label.
+1. **Commit Guidelines:** Please follow the [`gitmoji`](https://gitmoji.dev/) standard when making commits for your pull requests.
+2. **Infrastructure Impact:** This repository is used to manage the hosting of my local web applications. Please avoid submitting changes that might affect my infrastructure.
+3. **Sensitive Data:** All secrets, such as environment variables for each Docker container, are stored outside of this repository to maintain security. If you discover any sensitive data leaks, please send an email to **<cednore@gmail.com>** or submit an [issue](https://github.com/cednore/localhostings/issues) and attach the [`security`](https://github.com/cednore/localhostings/labels) label.
