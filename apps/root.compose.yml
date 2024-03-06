@@ -72,6 +72,7 @@ services:
         compress: "true"
         max-size: "1024m"
         max-file: "512"
+
 volumes:
   root_nginx_log:
     driver: local
