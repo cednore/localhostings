@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.25-alpine
+    env_file: ./env/.env.root.nginx
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /var/run
+    volumes:
+      - "./apps/nginx:/etc/nginx"
+      - "root_nginx_log:/var/log/nginx:rw"
+      - "root_nginx_cache:/var/cache/nginx:rw"
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      root:
+        aliases:
+          - nginx
+          - www
+          - proxy
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+
+volumes:
+  root_nginx_log:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/volumes/root_nginx_log"
+      o: bind
+  root_nginx_cache:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/volumes/root_nginx_cache"
+      o: bind
+
+networks:
+  root:
