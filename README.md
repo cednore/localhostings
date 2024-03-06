@@ -54,6 +54,7 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
 - [ ] [`overleaf`](https://github.com/overleaf/overleaf)
+- [ ] [`inventree`](https://github.com/inventree/inventree)
 - [ ] GitHub issue templates; `bug`, `security`, `cost`, `feature` and so on
 - [ ] GitHub PR template
 - [x] Local DNS server to resolve `*.local` to localhost
