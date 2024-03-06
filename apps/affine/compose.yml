@@ -22,6 +22,9 @@ services:
         aliases:
           - app
           - affine
+      root:
+        aliases:
+          - affine
     logging:
       driver: json-file
       options:
