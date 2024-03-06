@@ -1,4 +1,25 @@
 services:
+  dnsmasq:
+    container_name: dnsmasq
+    image: jpillora/dnsmasq:1.1
+    env_file: ${PWD}/env/.env.root.dnsmasq
+    restart: unless-stopped
+    volumes:
+      - ./dnsmasq/etc/dnsmasq.conf:/etc/dnsmasq.conf
+    ports:
+      - 53:53/udp
+      - 5380:8080
+    networks:
+      root:
+        aliases:
+          - dns
+          - dnsmasq
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
   nginx:
     container_name: nginx
     image: nginx:1.25-alpine
