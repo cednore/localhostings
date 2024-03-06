@@ -28,7 +28,31 @@ services:
         compress: "true"
         max-size: "1024m"
         max-file: "512"
-
+  postgres:
+    container_name: postgres
+    image: postgres:16.2-alpine
+    env_file: ./env/.env.root.postgres
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - "root_postgres_data:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+    networks:
+      root:
+        aliases:
+          - postgres
+          - pg
+          - dbp
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
 volumes:
   root_nginx_log:
     driver: local
@@ -41,6 +65,12 @@ volumes:
     driver_opts:
       type: none
       device: "$PWD/volumes/root_nginx_cache"
+      o: bind
+  root_postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "$PWD/volumes/root_postgres_data"
       o: bind
 
 networks:
