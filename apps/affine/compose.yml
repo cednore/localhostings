@@ -7,7 +7,7 @@ services:
         condition: service_healthy
       affine_db:
         condition: service_healthy
-    env_file: ../../env/.env.affine.app
+    env_file: ${PWD}/env/.env.affine.app
     restart: unless-stopped
     command:
       ["sh", "-c", "node ./scripts/self-host-predeploy && node ./dist/index.js"]
@@ -22,7 +22,7 @@ services:
         aliases:
           - app
           - affine
-      root:
+      localhostings_root:
         aliases:
           - affine
     logging:
@@ -34,7 +34,7 @@ services:
   affine_cache:
     container_name: affine_cache
     image: redis:7.2-alpine
-    env_file: ../../env/.env.affine.cache
+    env_file: ${PWD}/env/.env.affine.cache
     restart: unless-stopped
     volumes:
       - affine_cache_data:/data
@@ -58,7 +58,7 @@ services:
   affine_db:
     container_name: affine_db
     image: postgres:16.2-alpine
-    env_file: ../../env/.env.affine.db
+    env_file: ${PWD}/env/.env.affine.db
     restart: unless-stopped
     volumes:
       - affine_db_data:/var/lib/postgresql/data
@@ -103,4 +103,6 @@ volumes:
       o: bind
 
 networks:
+  localhostings_root:
+    external: true
   affine:
