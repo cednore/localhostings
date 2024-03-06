@@ -50,7 +50,7 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 
 ## 🚧 Roadmap
 
-- [ ] Example of env files
+- [ ] Example of env files, along with documentation explaining how to copy and customize
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
 - [ ] [`overleaf`](https://github.com/overleaf/overleaf)
