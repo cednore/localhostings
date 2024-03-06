@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 
 services:
   nginx:
@@ -10,20 +10,20 @@ services:
     tmpfs:
       - /var/run
     volumes:
-      - "./apps/nginx:/etc/nginx"
-      - "root_nginx_log:/var/log/nginx:rw"
-      - "root_nginx_cache:/var/cache/nginx:rw"
+      - ./apps/nginx/etc:/etc/nginx
+      - root_nginx_log:/var/log/nginx:rw
+      - root_nginx_cache:/var/cache/nginx:rw
     ports:
       - 80:80
       - 443:443
     networks:
       root:
         aliases:
+          - proxy
           - nginx
           - www
-          - proxy
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
         compress: "true"
         max-size: "1024m"
@@ -38,17 +38,17 @@ services:
       - /tmp
       - /var/run/postgresql
     volumes:
-      - "root_postgres_data:/var/lib/postgresql/data"
+      - root_postgres_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
       root:
         aliases:
+          - dbp
           - postgres
           - pg
-          - dbp
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
         compress: "true"
         max-size: "1024m"
@@ -58,20 +58,24 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/volumes/root_nginx_log"
+      device: ${PWD}/volumes/root_nginx_log
       o: bind
   root_nginx_cache:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/volumes/root_nginx_cache"
+      device: ${PWD}/volumes/root_nginx_cache
       o: bind
   root_postgres_data:
     driver: local
     driver_opts:
       type: none
-      device: "$PWD/volumes/root_postgres_data"
+      device: ${PWD}/volumes/root_postgres_data
       o: bind
 
 networks:
   root:
+
+include:
+  - path:
+      - ./apps/affine/compose.yml
