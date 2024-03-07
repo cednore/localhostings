@@ -14,9 +14,6 @@ services:
     volumes:
       - ./affine/config:/root/.affine/config
       - affine_app_storage:/root/.affine/storage
-    ports:
-      - 3010:3010
-      - 5555:5555
     networks:
       affine:
         aliases:
