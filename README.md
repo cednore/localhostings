@@ -57,6 +57,7 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 
 ## 🚧 Roadmap
 
+- [ ] Debug sync issue in affine
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
 - [ ] [`overleaf`](https://github.com/overleaf/overleaf)
