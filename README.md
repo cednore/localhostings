@@ -11,9 +11,10 @@
 
 ## What's included 🗃️
 
-1. `nginx`; serving multiple vhosts
-2. `postgres`; for my personal projects
-3. [`AFFiNE`](https://github.com/toeverything/AFFiNE); notion alternative
+1. `dnsmasq`; resolving `*.local` to localhost
+2. `nginx`; serving multiple vhosts
+3. `postgres`; for my personal projects
+4. [`AFFiNE`](https://github.com/toeverything/AFFiNE); notion alternative
 
 ## ⚡ Getting started
 
@@ -23,6 +24,12 @@ git clone git@github.com:cednore/localhostings.git
 
 # cd into repo directory
 cd localhostings
+
+# if you are @cednore, pump the secrets out from private submodule
+git submodule update --init --recursive
+
+# if not, then start from templates
+rm -rf env && cp -R env.examples env
 
 # kickstart everything
 just up
@@ -50,7 +57,6 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 
 ## 🚧 Roadmap
 
-- [ ] Example of env files, along with documentation explaining how to copy and customize
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
 - [ ] [`overleaf`](https://github.com/overleaf/overleaf)
@@ -58,6 +64,7 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 - [ ] GitHub issue templates; `bug`, `security`, `cost`, `feature` and so on
 - [ ] GitHub PR template
 - [x] Local DNS server to resolve `*.local` to localhost
+- [x] Example of env files, along with documentation explaining how to copy and customize
 
 ## 📄 License
 
