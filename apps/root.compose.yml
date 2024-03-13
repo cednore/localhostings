@@ -75,23 +75,8 @@ services:
 
 volumes:
   root_nginx_log:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/root_nginx_log
-      o: bind
   root_nginx_cache:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/root_nginx_cache
-      o: bind
   root_postgres_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/root_postgres_data
-      o: bind
 
 networks:
   root:

@@ -81,23 +81,8 @@ services:
 
 volumes:
   affine_app_storage:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/affine_app_storage
-      o: bind
   affine_cache_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/affine_cache_data
-      o: bind
   affine_db_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/volumes/affine_db_data
-      o: bind
 
 networks:
   localhostings_root:
