@@ -57,10 +57,10 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 
 ## 🚧 Roadmap
 
+- [ ] Fix issues in `sharelatex` (currently it's broken)
 - [ ] Debug sync issue in affine
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
-- [ ] [`overleaf`](https://github.com/overleaf/overleaf)
 - [ ] [`inventree`](https://github.com/inventree/inventree)
 - [ ] GitHub issue templates; `bug`, `security`, `cost`, `feature` and so on
 - [ ] GitHub PR template
