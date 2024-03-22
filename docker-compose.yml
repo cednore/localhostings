@@ -7,3 +7,4 @@ include:
       - ./apps/root.compose.yml
       - ./apps/affine/compose.yml
       - ./apps/sharelatex/compose.yml
+      - ./apps/mattermost/compose.yml

@@ -1,0 +1,5 @@
+TZ=UTC
+MM_SQLSETTINGS_DRIVERNAME=postgres
+MM_SQLSETTINGS_DATASOURCE="postgres://postgres:password@db:5432/mattermost?sslmode=disable&connect_timeout=10"
+MM_BLEVESETTINGS_INDEXDIR=/mattermost/bleve-indexes
+MM_SERVICESETTINGS_SITEURL=https://mattermost.local

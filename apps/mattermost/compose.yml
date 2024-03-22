@@ -1,0 +1,78 @@
+services:
+  mattermost_app:
+    container_name: mattermost_app
+    image: mattermost/mattermost-enterprise-edition:9.5.2
+    depends_on:
+      mattermost_db:
+        condition: service_healthy
+    env_file: ${PWD}/env/.env.mattermost.app
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./mattermost/config:/mattermost/config
+      - mattermost_app_db:/mattermost/db
+      - mattermost_app_data:/mattermost/data
+      - mattermost_app_logs:/mattermost/logs
+      - mattermost_app_plugins:/mattermost/plugins
+      - mattermost_app_client_plugins:/mattermost/client/plugins
+      - mattermost_app_bleve_indexes:/mattermost/bleve-indexes
+    networks:
+      mattermost:
+        aliases:
+          - app
+          - mattermost
+      localhostings_root:
+        aliases:
+          - mattermost
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+  mattermost_db:
+    container_name: mattermost_db
+    image: postgres:13-alpine
+    env_file: ${PWD}/env/.env.mattermost.db
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - mattermost_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mattermost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      mattermost:
+        aliases:
+          - db
+          - postgres
+          - pg
+          - mattermost_postgres
+          - mattermost_pg
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+
+volumes:
+  mattermost_app_db:
+  mattermost_app_data:
+  mattermost_app_logs:
+  mattermost_app_plugins:
+  mattermost_app_client_plugins:
+  mattermost_app_bleve_indexes:
+  mattermost_db_data:
+
+networks:
+  localhostings_root:
+    external: true
+  mattermost:
