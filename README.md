@@ -26,6 +26,7 @@ cd localhostings
 
 # if you are @cednore, pump the secrets out from private submodule
 git submodule update --init --recursive
+git submodule set-branch --default secrets
 
 # if not, then start from templates
 rm -rf secrets && cp -R secrets.examples secrets
