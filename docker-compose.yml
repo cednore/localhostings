@@ -1,10 +1,86 @@
-version: "2"
-
 name: localhostings
 
-include:
-  - path:
-      - ./apps/root.compose.yml
-      - ./apps/affine/compose.yml
-      - ./apps/sharelatex/compose.yml
-      - ./apps/mattermost/compose.yml
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.25-alpine
+    env_file: ./env/.env.nginx
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /var/run
+    volumes:
+      - ./etc/nginx:/etc/nginx
+      - nginx_log:/var/log/nginx
+      - nginx_cache:/var/cache/nginx
+    ports:
+      - 80:80
+      - 443:443
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+
+  postgres:
+    container_name: postgres
+    image: postgres:16.2-alpine
+    env_file: ./env/.env.postgres
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mattermost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5432:5432
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+
+  mattermost:
+    container_name: mattermost
+    image: mattermost/mattermost-enterprise-edition:9.6.0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file: ./env/.env.mattermost
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./config/mattermost:/mattermost/config
+      - mattermost_db:/mattermost/db
+      - mattermost_data:/mattermost/data
+      - mattermost_logs:/mattermost/logs
+      - mattermost_plugins:/mattermost/plugins
+      - mattermost_client_plugins:/mattermost/client/plugins
+      - mattermost_bleve_indexes:/mattermost/bleve-indexes
+    logging:
+      driver: json-file
+      options:
+        compress: "true"
+        max-size: "1024m"
+        max-file: "512"
+
+volumes:
+  nginx_log:
+  nginx_cache:
+  postgres_data:
+  mattermost_db:
+  mattermost_data:
+  mattermost_logs:
+  mattermost_plugins:
+  mattermost_client_plugins:
+  mattermost_bleve_indexes:

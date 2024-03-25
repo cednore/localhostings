@@ -11,10 +11,9 @@
 
 ## What's included 🗃️
 
-1. `dnsmasq`; resolving `*.local` to localhost
-2. `nginx`; serving multiple vhosts
-3. `postgres`; for my personal projects
-4. [`AFFiNE`](https://github.com/toeverything/AFFiNE); notion alternative
+1. `nginx`; serving multiple vhosts
+2. `postgres`; for my personal projects
+2. [`mattermost`](https://mattermost.com); open-source alternative to Slack
 
 ## ⚡ Getting started
 
@@ -57,14 +56,11 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 
 ## 🚧 Roadmap
 
-- [ ] Fix issues in `sharelatex` (currently it's broken)
-- [ ] Debug sync issue in affine
 - [ ] **Prerequisites** chapter in `README.md`
 - [ ] [`excalidraw`](https://github.com/excalidraw/excalidraw)
 - [ ] [`inventree`](https://github.com/inventree/inventree)
 - [ ] GitHub issue templates; `bug`, `security`, `cost`, `feature` and so on
 - [ ] GitHub PR template
-- [x] Local DNS server to resolve `*.local` to localhost
 - [x] Example of env files, along with documentation explaining how to copy and customize
 
 ## 📄 License
