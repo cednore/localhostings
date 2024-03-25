@@ -28,7 +28,7 @@ cd localhostings
 git submodule update --init --recursive
 
 # if not, then start from templates
-rm -rf env && cp -R env.examples env
+rm -rf secrets && cp -R secrets.examples secrets
 
 # kickstart everything
 just up
@@ -61,7 +61,7 @@ Contributions are welcome by opening issues and pull requests. See [CONTRIBUTING
 - [ ] [`inventree`](https://github.com/inventree/inventree)
 - [ ] GitHub issue templates; `bug`, `security`, `cost`, `feature` and so on
 - [ ] GitHub PR template
-- [x] Example of env files, along with documentation explaining how to copy and customize
+- [x] Example of secrets dir, along with documentation explaining how to copy and customize
 
 ## 📄 License
 
